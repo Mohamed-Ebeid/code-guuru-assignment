@@ -23,24 +23,23 @@ const transporter = nodemailer.createTransport({
 
 export const signIn = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
-  // console.log(req.body);
+  //console.log(req.body);
   //console.log(user);
   try {
     if (user) {
       if (bcrypt.compareSync(req.body.password, user.password)) {
-        res.send({
+        return res.send({
           _id: user._id,
           name: user.name,
           email: user.email,
           token: generateToken(user),
         });
-        return;
       } else {
         return res.status(401).send({ message: "Invalid password" });
       }
     }
     return res
-      .status(401)
+      .status(404)
       .send({ message: "This email does not exist in our database" });
   } catch (e) {
     return res.status(400).send("Error =>" + e.message);
