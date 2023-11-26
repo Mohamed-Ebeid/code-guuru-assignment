@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 
+//JWT
 export const generateToken = (user) => {
   return jwt.sign(
     {
@@ -16,6 +17,7 @@ export const generateToken = (user) => {
   );
 };
 
+//is the request authorized
 export const isAuth = (req, res, next) => {
   // Middleware for authentiction
   const authorization = req.headers.authorization;

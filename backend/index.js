@@ -24,6 +24,7 @@ app.get("/api", (req, res) => {
   res.json("Welcome to the Backend API");
 });
 
+//End points
 app.use("/api/user", userRoutes);
 app.use("/api/expense", expenseRoutes);
 
